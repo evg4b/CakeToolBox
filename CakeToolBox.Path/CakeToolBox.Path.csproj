@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>CakeToolBox.Path</RootNamespace>
+    <AssemblyName>CakeToolBox.Path</AssemblyName>
+    <Version>0.0.0.2-alpha</Version>
+    <Authors>Evgeny Abramovich</Authors>
+    <Product>CakeToolBox.Path</Product>
+    <Description></Description>
+    <Copyright></Copyright>
+    <license>../LICENSE</license>
+    <PackageProjectUrl>https://github.com/evg4b/CakeToolBox</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/evg4b/CakeToolBox</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <icon>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</icon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cake.Common" Version="0.37.0" />
+    <PackageReference Include="Cake.Core" Version="0.37.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
