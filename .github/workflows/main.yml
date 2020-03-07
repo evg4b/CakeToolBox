@@ -10,10 +10,8 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build and publich packages on nuget
-      uses: ecampidoglio/cake-action@v1.1.1
+    - name: Build and publish packages on nuget
       env:
         NUGET_API_KEY: ${{ secrets.NugetApiKey }}
-      with:
-        target: Publish
-        verbosity: Diagnostic
+      run: ./build.ps1 -Target Publish
+      shell: powershell
