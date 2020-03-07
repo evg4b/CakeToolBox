@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>CakeToolBox.Path</RootNamespace>
     <AssemblyName>CakeToolBox.Path</AssemblyName>
-    <Version>0.0.0.2-alpha</Version>
+    <Version>0.0.0.2-alpha2</Version>
     <Authors>Evgeny Abramovich</Authors>
     <Product>CakeToolBox.Path</Product>
     <Description></Description>
