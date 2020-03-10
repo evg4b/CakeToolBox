@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>CakeToolBox.Path</RootNamespace>
-    <AssemblyName>CakeToolBox.Path</AssemblyName>
+    <RootNamespace>CakeToolBox.IO</RootNamespace>
+    <AssemblyName>CakeToolBox.IO</AssemblyName>
     <Version>0.0.0.2-alpha2</Version>
     <Authors>Evgeny Abramovich</Authors>
     <Product>CakeToolBox</Product>
@@ -17,8 +17,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cake.Common" Version="0.37.0" />
-    <PackageReference Include="Cake.Core" Version="0.37.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

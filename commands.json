@@ -1,0 +1,25 @@
+{
+  "commands"+
+  "": {
+    "Clean": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 -Target Clean"
+    },
+    "Path:Pack": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 -Target Path:Pack"
+    },
+    "Path:IO": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 -Target Path:IO"
+    },
+    "Publish": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 -Target Publish"
+    }
+  }
+}
