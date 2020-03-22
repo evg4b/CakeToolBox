@@ -38,7 +38,8 @@ Task("Publish")
     .IsDependentOn("Pack")
     .Does(() => NuGetPush(GetFiles(System.IO.Path.Combine(outputDirectory, "*.nupkg")), new NuGetPushSettings {
         ApiKey = nugetApiKey,
-        Source = "https://www.nuget.org"
+        Source = "https://www.nuget.org",
+		SkipDuplicate = true,
     }));
 
 
