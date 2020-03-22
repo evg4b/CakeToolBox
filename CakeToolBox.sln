@@ -5,14 +5,18 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeToolBox.Path", "CakeToolBox.Path\CakeToolBox.Path.csproj", "{5C86BB7D-5175-42EB-9AF7-D1FF55688CCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeToolBox.Path.Tests", "CakeToolBox.Path.Tests\CakeToolBox.Path.Tests.csproj", "{073E81A8-8E8C-400A-B5B4-C2CD3F1C1DC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeToolBox.Path.Tests", "CakeToolBox.Path.Tests\CakeToolBox.Path.Tests.csproj", "{073E81A8-8E8C-400A-B5B4-C2CD3F1C1DC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeToolBox.IO", "CakeToolBox.IO\CakeToolBox.IO.csproj", "{4625A9ED-3434-4CF8-AE28-9DAC1E795FAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeToolBox.IO", "CakeToolBox.IO\CakeToolBox.IO.csproj", "{4625A9ED-3434-4CF8-AE28-9DAC1E795FAF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0B63BA49-9B46-4637-8D0D-BFC747B8764F}"
 	ProjectSection(SolutionItems) = preProject
 		commands.json = commands.json
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeToolBox.Parameters", "CakeToolBox.Parameters\CakeToolBox.Parameters.csproj", "{7C3FF44E-FA6B-491E-8821-CEFE89C9AC1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeToolBox.Parameters.Tests", "CakeToolBox.Parameters.Tests\CakeToolBox.Parameters.Tests.csproj", "{869D722B-B182-4AA6-953B-081DB13B0D78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://github.com/evg4b/CakeToolBox</PackageProjectUrl>
     <RepositoryUrl>https://github.com/evg4b/CakeToolBox</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <icon>https://cdn.jsdelivr.net/gh/cake-contrib/graphics/png/cake-contrib-medium.png</icon>
+    <icon>https://res.cloudinary.com/evg-abramovitch/image/upload/v1584908793/CakeToolBox/cake-tool-box.png</icon>
   </PropertyGroup>
 
   <ItemGroup>
