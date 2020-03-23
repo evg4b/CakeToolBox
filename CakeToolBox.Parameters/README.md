@@ -5,12 +5,15 @@
 
 ## Aliases
 
-### Switch
+### Choice
+
+Returns the only one possible item from the list based on the passed parameters. This method do not provide values from argument.
+In the case of passing multiple arguments, throws `MoreThanOneCaseSpecifiedException` exception.
 
 ``` CSharp
 // common usage
-var value = Switch("case1", "case2", "case3");
+var parameter = Choice("case1", "case2", "case3");
 
 // with default value
-var value = Switch(new string[]{"case1", "case2", "case3"}, "defaultCase");
+var parameter = Choice(new string[]{"case1", "case2", "case3"}, "defaultCase");
 ```

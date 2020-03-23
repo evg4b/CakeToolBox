@@ -1,43 +1,43 @@
 namespace CakeToolBox.Parameters.Tests
 {
     using Cake.Core;
-    using CakeToolBox.Parameters.Exceptions;
+    using Exceptions;
     using Moq;
     using System;
     using Xunit;
 
-    public class SwitchTests
+    public class ChoiceAliasesTests
     {
-        private string[] cases = new string[] { "param0", "param1", "param2", "param3", "param4" };
+        private readonly string[] cases = { "param0", "param1", "param2", "param3", "param4" };
 
         [Theory]
         [InlineData("param", "param")]
         [InlineData("param", "demo", "param", "param44", "666")]
         [InlineData("param1", "param1")]
         [InlineData("param3", "demo4", "demo", "param3")]
-        public void ShoudReturnCorrectCase(string argument, params string[] cases)
+        public void ShouldReturnCorrectCase(string argument, params string[] cases)
         {
             var argumentsMock = new Mock<ICakeArguments>(MockBehavior.Strict);
             argumentsMock.Setup(p => p.HasArgument(It.IsAny<string>()))
-                .Returns<string>(param => param.Equals(argument, System.StringComparison.InvariantCultureIgnoreCase));
+                .Returns<string>(param => param.Equals(argument, StringComparison.InvariantCultureIgnoreCase));
 
-            var result = SwitchAliases.Switch(GetContext(argumentsMock), cases);
+            var result = GetContext(argumentsMock).Choice(cases);
             
             Assert.Equal(argument, result);
         }
 
         [Fact]
-        public void ShoudThrowErrorWhereCaseNotFound()
+        public void ShouldThrowErrorWhereCaseNotFound()
         {
             var argumentsMock = new Mock<ICakeArguments>(MockBehavior.Strict);
             argumentsMock.Setup(p => p.HasArgument(It.IsAny<string>()))
                 .Returns(false);
 
-            Assert.Throws<CaseNotFoundException>(() => SwitchAliases.Switch(GetContext(argumentsMock), cases));
+            Assert.Throws<CaseNotFoundException>(() => GetContext(argumentsMock).Choice(cases));
         }
 
         [Fact]
-        public void ShoudReturnDefaultValueWhereItSpecifiedAndCaseNotFound()
+        public void ShouldReturnDefaultValueWhereItSpecifiedAndCaseNotFound()
         {
             const string defaultValue = "defaultValue";
 
@@ -45,31 +45,31 @@ namespace CakeToolBox.Parameters.Tests
             argumentsMock.Setup(p => p.HasArgument(It.IsAny<string>()))
                 .Returns(false);
 
-            Assert.Equal(defaultValue, SwitchAliases.Switch(GetContext(argumentsMock), cases, defaultValue));
+            Assert.Equal(defaultValue, GetContext(argumentsMock).Choice(cases, defaultValue));
         }
 
         [Fact]
-        public void ShoudThrowErrorWhenMoreThanOneCaseSpecified()
+        public void ShouldThrowErrorWhenMoreThanOneCaseSpecified()
         {
             var argumentsMock = new Mock<ICakeArguments>(MockBehavior.Strict);
             argumentsMock.Setup(p => p.HasArgument(It.IsAny<string>()))
                 .Returns(true);
 
-            Assert.Throws<MoreThanOneCaseSpecifiedException>(() => SwitchAliases.Switch(GetContext(argumentsMock), cases));
+            Assert.Throws<MoreThanOneCaseSpecifiedException>(() => GetContext(argumentsMock).Choice(cases));
         }
 
         [Fact]
-        public void ShoudNotThrowErrorWhenDefaultValueIsNull()
+        public void ShouldNotThrowErrorWhenDefaultValueIsNull()
         {
             var argumentsMock = new Mock<ICakeArguments>(MockBehavior.Strict);
             argumentsMock.Setup(p => p.HasArgument(It.IsAny<string>()))
                 .Returns(false);
 
-            Assert.Null(SwitchAliases.Switch(GetContext(argumentsMock), cases, null));
+            Assert.Null(GetContext(argumentsMock).Choice(cases, null));
         }
 
         [Fact]
-        public void ShoudThrowErrorWhenOptionsAreNotUnique()
+        public void ShouldThrowErrorWhenOptionsAreNotUnique()
         {
             var argument = "case1";
             var cases = new string[] { argument, argument, "case2", "case3" };
@@ -78,7 +78,7 @@ namespace CakeToolBox.Parameters.Tests
             argumentsMock.Setup(p => p.HasArgument(It.IsAny<string>()))
                 .Returns<string>(p => argument.Equals(p, StringComparison.InvariantCultureIgnoreCase));
 
-            Assert.Throws<NotUniqueCaseException>(() => SwitchAliases.Switch(GetContext(argumentsMock), cases));
+            Assert.Throws<NotUniqueCaseException>(() => GetContext(argumentsMock).Choice(cases));
         }
 
         private ICakeContext GetContext(Mock<ICakeArguments> argumentsMock)

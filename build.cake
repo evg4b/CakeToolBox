@@ -1,38 +1,36 @@
+#tool "nuget:?package=xunit.runner.console&version=2.2.0"
+
 var target = Argument<string>("Target");
 var configuration = Argument<string>("Configuration", "Release");
 var outputDirectory = Argument<string>("OutputDirectory", "Publish");
 var nugetApiKey = EnvironmentVariable("NUGET_API_KEY");
 
+var packOptions = new DotNetCorePackSettings {
+    ArgumentCustomization = args => args.Append("/p:TreatWarningsAsErros=true"),
+    Configuration = configuration,
+    OutputDirectory = outputDirectory,
+};
+
 Task("Clean")
     .Does(() => CleanDirectory(outputDirectory));
 
 Task("Pack:Path")
-    .Does(() =>  DotNetCorePack("CakeToolBox.Path", new DotNetCorePackSettings {
-        Configuration = configuration,
-        OutputDirectory = outputDirectory,
-    }));
+    .IsDependentOn("Tests:Path")
+    .Does(() =>  DotNetCorePack("CakeToolBox.Path", packOptions));
 
 Task("Pack:IO")
-    .Does(() =>  DotNetCorePack("CakeToolBox.IO", new DotNetCorePackSettings {
-        Configuration = configuration,
-        OutputDirectory = outputDirectory,
-    }));
+    .Does(() =>  DotNetCorePack("CakeToolBox.IO", packOptions));
 
 Task("Pack:Parameters")
-    .Does(() =>  DotNetCorePack("CakeToolBox.Parameters", new DotNetCorePackSettings {
-        Configuration = configuration,
-        OutputDirectory = outputDirectory,
-    }));
+    .IsDependentOn("Tests:Parameters")
+    .Does(() =>  DotNetCorePack("CakeToolBox.Parameters", packOptions));
 
 Task("Pack")
     .IsDependentOn("Clean")
     .IsDependentOn("Pack:Path")
     .IsDependentOn("Pack:IO")
     .IsDependentOn("Pack:Parameters")
-    .Does(() =>  DotNetCorePack("CakeToolBox.Parameters", new DotNetCorePackSettings {
-        Configuration = configuration,
-        OutputDirectory = outputDirectory,
-    }));
+    .Does(() =>  DotNetCorePack("CakeToolBox.Parameters", packOptions));
 
 Task("Publish")
     .IsDependentOn("Pack")
@@ -42,5 +40,14 @@ Task("Publish")
 		SkipDuplicate = true,
     }));
 
+Task("Tests")
+    .IsDependentOn("Tests:Path")
+    .IsDependentOn("Tests:Parameters");
+
+Task("Tests:Path")
+    .Does(() => DotNetCoreTest("CakeToolBox.Path.Tests"));
+
+Task("Tests:Parameters")
+    .Does(() => DotNetCoreTest("CakeToolBox.Parameters.Tests"));
 
 RunTarget(target);
