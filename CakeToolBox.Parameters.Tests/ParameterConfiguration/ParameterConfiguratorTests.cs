@@ -1,12 +1,12 @@
-﻿namespace CakeToolBox.Parameters.Tests
-{
-    using System;
-    using System.Collections.Generic;
-    using Cake.Core;
-    using Moq;
-    using Xunit;
-    using ParameterConfiguration;
+﻿using System;
+using System.Collections.Generic;
+using Cake.Core;
+using CakeToolBox.Parameters.ParameterConfiguration;
+using Moq;
+using Xunit;
 
+namespace CakeToolBox.Parameters.Tests.ParameterConfiguration
+{
     public class ParameterConfiguratorTests
     {
         private const string Prefix = "CAKE";

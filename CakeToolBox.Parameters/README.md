@@ -12,6 +12,9 @@ The following aliases are currently available:
   - [Choice](#choice)
   - [ConfigureRequiredParameter](#configurerequiredparameter)
   - [ConfigureParameterWithDefaultValue](#configureparameterwithdefaultvalue)
+- [Not recommended for use:](#not-recommended-for-use)
+  - [GetAllArguments](#getallarguments)
+  - [GetAllArgumentsNames](#getallargumentsnames)
 
 ### Parameter
 
@@ -62,4 +65,24 @@ This alias returns a function to get parameters with default value and custom co
 var parameter = ConfigureParameterWithDefaultValue<double>("CUSTOM_PREFIX");
 var pi = parameter("Pi", 3.14);
 // This parameters can be specified using the argument 'Pi' or environment variable 'CUSTOM_PREFIX_PI'
+```
+
+## Not recommended for use:
+
+**WARN:** These methods use reflection to getting data. In future versions of CakeBuild, these aliases may do not work. Use these methods only when absolutely necessary and lock cake build version.
+
+### GetAllArguments
+
+Returns all arguments and their values ​​passed to cake script.
+
+``` CSharp
+var arguments = GetAllArguments(); // returns IDictionary<string, string>
+```
+
+### GetAllArgumentsNames
+
+Returns names of all arguments ​​passed to cake script.
+
+``` CSharp
+var argumentsNames = GetAllArgumentsNames(); // returns IEnumerable<string>
 ```

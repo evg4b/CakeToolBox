@@ -1,10 +1,10 @@
-﻿namespace CakeToolBox.Parameters.Tests
-{
-    using Cake.Core;
-    using Moq;
-    using Xunit;
-    using Aliases;
+﻿using Cake.Core;
+using CakeToolBox.Parameters.Aliases;
+using Moq;
+using Xunit;
 
+namespace CakeToolBox.Parameters.Tests.Aliases
+{
     public class ParameterAliasesTests
     {
         [Theory]

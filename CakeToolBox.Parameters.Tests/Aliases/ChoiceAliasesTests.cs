@@ -1,11 +1,11 @@
-namespace CakeToolBox.Parameters.Tests
-{
-    using Cake.Core;
-    using Moq;
-    using System;
-    using Xunit;
-    using Aliases;
+using System;
+using Cake.Core;
+using CakeToolBox.Parameters.Aliases;
+using Moq;
+using Xunit;
 
+namespace CakeToolBox.Parameters.Tests.Aliases
+{
     public class ChoiceAliasesTests
     {
         private readonly string[] cases = { "param0", "param1", "param2", "param3", "param4" };
