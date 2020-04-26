@@ -1,23 +1,21 @@
-﻿namespace CakeToolBox.Parameters
+﻿namespace CakeToolBox.Parameters.Aliases
 {
     using System.Collections.Generic;
     using System.Linq;
     using Cake.Core;
     using Cake.Core.Annotations;
     using Dawn;
-    using Exceptions;
 
     public static class ChoiceAliases
     {
         [CakeMethodAlias]
         public static string Choice(this ICakeContext context, params string[] cases)
-            => ChoiceInternal(context, cases, null) ?? throw new CaseNotFoundException(cases);
+            => ChoiceInternal(context, cases, null)
+               ?? throw new CakeException($"Case not found. Please specify one of these options: {string.Join(", ", cases)}");
 
         [CakeMethodAlias]
         public static string Choice(this ICakeContext context, string[] cases, string defaultValue)
-        {
-            return ChoiceInternal(context, cases, defaultValue);
-        }
+            => ChoiceInternal(context, cases, defaultValue);
 
         private static string ChoiceInternal(this ICakeContext context, string[] cases, string defaultValue)
         {
@@ -33,22 +31,19 @@
             {
                 if (!uniqueCases.Add(caseItem))
                 {
-                    throw new NotUniqueCaseException(caseItem);
+                    throw new CakeException($"Case \"{caseItem}\" is defined more than once");
                 }
             }
 
             var availableCases = uniqueCases.Where(context.Arguments.HasArgument)
                 .ToArray();
 
-            switch (availableCases.Length)
+            return availableCases.Length switch
             {
-                case 0:
-                    return defaultValue;
-                case 1:
-                    return availableCases.First();
-                default:
-                    throw new MoreThanOneCaseSpecifiedException(availableCases);
-            }
+                0 => defaultValue,
+                1 => availableCases.First(),
+                _ => throw new CakeException($"You must specify only one of these values: { string.Join(", ", availableCases)}"),
+            };
         }
     }
 }

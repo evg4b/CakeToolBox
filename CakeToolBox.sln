@@ -13,7 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		build.cake = build.cake
 		build.ps1 = build.ps1
 		build.sh = build.sh
-		commands.json = commands.json
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -23,6 +22,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeToolBox.Parameters.Tests", "CakeToolBox.Parameters.Tests\CakeToolBox.Parameters.Tests.csproj", "{8A9189FD-9F72-4B20-952C-FA072C7FB1FD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CakeToolBox.Path.Tests", "CakeToolBox.Path.Tests\CakeToolBox.Path.Tests.csproj", "{2B1C1B05-0ECE-4A39-9A39-F65008AB14F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeToolBox.Internal", "CakeToolBox.Internal\CakeToolBox.Internal.csproj", "{5D55CBEF-23E3-47FA-B291-EEBE3A4B791C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CakeToolBox.Internal.Tests", "CakeToolBox.Internal.Tests\CakeToolBox.Internal.Tests.csproj", "{1DC00C5F-10FA-4DBF-B919-D5DC7B584921}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +53,14 @@ Global
 		{2B1C1B05-0ECE-4A39-9A39-F65008AB14F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B1C1B05-0ECE-4A39-9A39-F65008AB14F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B1C1B05-0ECE-4A39-9A39-F65008AB14F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D55CBEF-23E3-47FA-B291-EEBE3A4B791C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D55CBEF-23E3-47FA-B291-EEBE3A4B791C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D55CBEF-23E3-47FA-B291-EEBE3A4B791C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D55CBEF-23E3-47FA-B291-EEBE3A4B791C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DC00C5F-10FA-4DBF-B919-D5DC7B584921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DC00C5F-10FA-4DBF-B919-D5DC7B584921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DC00C5F-10FA-4DBF-B919-D5DC7B584921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DC00C5F-10FA-4DBF-B919-D5DC7B584921}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

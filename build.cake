@@ -1,5 +1,3 @@
-#tool "nuget:?package=xunit.runner.console&version=2.2.0"
-
 var target = Argument<string>("Target");
 var configuration = Argument<string>("Configuration", "Release");
 var outputDirectory = Argument<string>("OutputDirectory", "Publish");
@@ -15,14 +13,12 @@ Task("Clean")
     .Does(() => CleanDirectory(outputDirectory));
 
 Task("Pack:Path")
-    .IsDependentOn("Tests:Path")
     .Does(() =>  DotNetCorePack("CakeToolBox.Path", packOptions));
 
 Task("Pack:IO")
     .Does(() =>  DotNetCorePack("CakeToolBox.IO", packOptions));
 
 Task("Pack:Parameters")
-    .IsDependentOn("Tests:Parameters")
     .Does(() =>  DotNetCorePack("CakeToolBox.Parameters", packOptions));
 
 Task("Pack")
@@ -33,6 +29,7 @@ Task("Pack")
     .Does(() =>  DotNetCorePack("CakeToolBox.Parameters", packOptions));
 
 Task("Publish")
+	.IsDependentOn("Tests")
     .IsDependentOn("Pack")
     .Does(() => NuGetPush(GetFiles(System.IO.Path.Combine(outputDirectory, "*.nupkg")), new NuGetPushSettings {
         ApiKey = nugetApiKey,
@@ -41,6 +38,7 @@ Task("Publish")
     }));
 
 Task("Tests")
+	.IsDependentOn("Tests:Internal")
     .IsDependentOn("Tests:Path")
     .IsDependentOn("Tests:Parameters");
 
@@ -49,5 +47,8 @@ Task("Tests:Path")
 
 Task("Tests:Parameters")
     .Does(() => DotNetCoreTest("CakeToolBox.Parameters.Tests"));
+
+Task("Tests:Internal")
+    .Does(() => DotNetCoreTest("CakeToolBox.Internal.Tests"));
 
 RunTarget(target);

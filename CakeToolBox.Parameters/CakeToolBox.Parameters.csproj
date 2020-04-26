@@ -14,13 +14,19 @@
     <RepositoryUrl>https://github.com/evg4b/CakeToolBox</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <icon>https://res.cloudinary.com/evg-abramovitch/image/upload/v1584908793/CakeToolBox/cake-tool-box.png</icon>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Cake.Common" Version="0.37.0" />
     <PackageReference Include="Cake.Core" Version="0.37.0" />
     <PackageReference Include="Dawn.Guard" Version="1.12.0" />
+    <PackageReference Include="Humanizer.Core" Version="2.8.2" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Roslynator.Analyzers" Version="2.3.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -31,6 +37,10 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CakeToolBox.Internal\CakeToolBox.Internal.csproj" />
   </ItemGroup>
 
 </Project>

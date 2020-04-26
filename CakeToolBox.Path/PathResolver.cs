@@ -5,7 +5,6 @@
     using Cake.Core.Annotations;
     using System.IO;
     using System.Linq;
-
     using CakeIO = Cake.Core.IO;
 
     public static class PathResolver

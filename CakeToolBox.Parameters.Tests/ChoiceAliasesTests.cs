@@ -1,10 +1,10 @@
 namespace CakeToolBox.Parameters.Tests
 {
     using Cake.Core;
-    using Exceptions;
     using Moq;
     using System;
     using Xunit;
+    using Aliases;
 
     public class ChoiceAliasesTests
     {
@@ -22,7 +22,7 @@ namespace CakeToolBox.Parameters.Tests
                 .Returns<string>(param => param.Equals(argument, StringComparison.InvariantCultureIgnoreCase));
 
             var result = GetContext(argumentsMock).Choice(cases);
-            
+
             Assert.Equal(argument, result);
         }
 
@@ -33,7 +33,7 @@ namespace CakeToolBox.Parameters.Tests
             argumentsMock.Setup(p => p.HasArgument(It.IsAny<string>()))
                 .Returns(false);
 
-            Assert.Throws<CaseNotFoundException>(() => GetContext(argumentsMock).Choice(cases));
+            Assert.Throws<CakeException>(() => GetContext(argumentsMock).Choice(cases));
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace CakeToolBox.Parameters.Tests
             argumentsMock.Setup(p => p.HasArgument(It.IsAny<string>()))
                 .Returns(true);
 
-            Assert.Throws<MoreThanOneCaseSpecifiedException>(() => GetContext(argumentsMock).Choice(cases));
+            Assert.Throws<CakeException>(() => GetContext(argumentsMock).Choice(cases));
         }
 
         [Fact]
@@ -78,7 +78,7 @@ namespace CakeToolBox.Parameters.Tests
             argumentsMock.Setup(p => p.HasArgument(It.IsAny<string>()))
                 .Returns<string>(p => argument.Equals(p, StringComparison.InvariantCultureIgnoreCase));
 
-            Assert.Throws<NotUniqueCaseException>(() => GetContext(argumentsMock).Choice(cases));
+            Assert.Throws<CakeException>(() => GetContext(argumentsMock).Choice(cases));
         }
 
         private ICakeContext GetContext(Mock<ICakeArguments> argumentsMock)
