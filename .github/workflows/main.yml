@@ -7,11 +7,16 @@ on:
 
 jobs:
   publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Build and publish packages on nuget
+      uses: actions/checkout@v2
+
+    - name: Run the Cake script
+      uses: cake-build/cake-action@v1
       env:
         NUGET_API_KEY: ${{ secrets.NugetApiKey }}
-      run: ./build.ps1 -Target Publish
-      shell: powershell
+        GITHUB_API_KEY: ${{ secrets.GitHubApiKey }}
+      with:
+        verbosity: Verbose
+        target: Publish

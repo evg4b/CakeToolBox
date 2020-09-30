@@ -1,7 +1,6 @@
 var target = Argument<string>("Target");
 var configuration = Argument<string>("Configuration", "Release");
 var outputDirectory = Argument<string>("OutputDirectory", "Publish");
-var nugetApiKey = EnvironmentVariable("NUGET_API_KEY");
 
 var packOptions = new DotNetCorePackSettings {
     ArgumentCustomization = args => args.Append("/p:TreatWarningsAsErros=true"),
@@ -27,14 +26,29 @@ Task("Pack")
     .IsDependentOn("Pack:Parameters")
     .IsDependentOn("Pack:Environment");
 
+Task("Publish:NUGET")
+    .Does(() => {
+        NuGetSetApiKey(EnvironmentVariable("NUGET_API_KEY"), "https://www.nuget.org");
+        NuGetPush(GetFiles(System.IO.Path.Combine(outputDirectory, "*.nupkg")), new NuGetPushSettings {
+            Source = "https://www.nuget.org",
+            SkipDuplicate = true,
+        });
+    });
+
+Task("Publish:GITHUB")
+    .Does(() => {
+        NuGetSetApiKey(EnvironmentVariable("GITHUB_API_KEY"), "https://nuget.pkg.github.com/evg4b/index.json");
+        NuGetPush(GetFiles(System.IO.Path.Combine(outputDirectory, "*.nupkg")), new NuGetPushSettings {
+            Source = "https://nuget.pkg.github.com/evg4b/index.json",
+            SkipDuplicate = true,
+        });
+    });
+
 Task("Publish")
 	.IsDependentOn("Tests")
     .IsDependentOn("Pack")
-    .Does(() => NuGetPush(GetFiles(System.IO.Path.Combine(outputDirectory, "*.nupkg")), new NuGetPushSettings {
-        ApiKey = nugetApiKey,
-        Source = "https://www.nuget.org",
-		SkipDuplicate = true,
-    }));
+    .IsDependentOn("Publish:NUGET")
+    .IsDependentOn("Publish:GITHUB");
 
 Task("Tests")
 	.IsDependentOn("Tests:Internal")
