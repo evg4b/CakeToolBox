@@ -15,18 +15,17 @@ Task("Clean")
 Task("Pack:Path")
     .Does(() =>  DotNetCorePack("CakeToolBox.Path", packOptions));
 
-Task("Pack:IO")
-    .Does(() =>  DotNetCorePack("CakeToolBox.IO", packOptions));
-
 Task("Pack:Parameters")
     .Does(() =>  DotNetCorePack("CakeToolBox.Parameters", packOptions));
+
+Task("Pack:Environment")
+    .Does(() =>  DotNetCorePack("CakeToolBox.Environment", packOptions));
 
 Task("Pack")
     .IsDependentOn("Clean")
     .IsDependentOn("Pack:Path")
-    .IsDependentOn("Pack:IO")
     .IsDependentOn("Pack:Parameters")
-    .Does(() =>  DotNetCorePack("CakeToolBox.Parameters", packOptions));
+    .IsDependentOn("Pack:Environment");
 
 Task("Publish")
 	.IsDependentOn("Tests")

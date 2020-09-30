@@ -7,10 +7,7 @@ namespace CakeToolBox.Internal.Helpers
     {
         public static T ConvertTo<T>(string value) => (T) ConvertTo(typeof(T), value);
 
-        public static object ConvertTo(Type type, string value)
-        {
-            var converter = TypeDescriptor.GetConverter(type);
-            return converter.ConvertFromInvariantString(value);
-        }
+        public static object ConvertTo(Type type, string value) =>
+            TypeDescriptor.GetConverter(type).ConvertFromInvariantString(value);
     }
 }

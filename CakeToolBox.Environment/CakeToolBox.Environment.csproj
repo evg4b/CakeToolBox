@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <RootNamespace>CakeToolBox.Environment</RootNamespace>
+        <AssemblyName>CakeToolBox.Environment</AssemblyName>
+        <Version>0.0.0.2-alpha2</Version>
+        <Authors>Evgeny Abramovich</Authors>
+        <Product>CakeToolBox</Product>
+        <Description></Description>
+        <Copyright></Copyright>
+        <license>../LICENSE</license>
+        <PackageProjectUrl>https://github.com/evg4b/CakeToolBox/tree/master/CakeToolBox.Environment</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/evg4b/CakeToolBox</RepositoryUrl>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <icon>https://res.cloudinary.com/evg-abramovitch/image/upload/v1584908793/CakeToolBox/cake-tool-box.png</icon>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Cake.Common" Version="0.37.0" />
+        <PackageReference Include="Cake.Core" Version="0.37.0" />
+        <PackageReference Include="Dawn.Guard" Version="1.12.0" />
+        <PackageReference Include="Humanizer.Core" Version="2.8.2" />
+        <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Roslynator.Analyzers" Version="2.3.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\LICENSE">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+
+</Project>
