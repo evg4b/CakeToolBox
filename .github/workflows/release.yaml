@@ -1,0 +1,29 @@
+name: CakeToolBox release
+
+on: release
+
+jobs:
+  build-docker-image:
+    name: Build and upload docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Pack to .nupkg
+        uses: cake-build/cake-action@v1
+        env:
+          NUGET_API_KEY: ${{ secrets.NugetApiKey }}
+          GITHUB_API_KEY: ${{ secrets.GitHubApiKey }}
+        with:
+          verbosity: Verbose
+          target: Pack
+
+      - name: Upload to release
+        uses: JasonEtco/upload-to-release@master
+        with:
+          args: my-image.tar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
