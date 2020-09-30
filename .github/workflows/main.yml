@@ -1,22 +1,16 @@
-name: CakeToolBox Publish
+name: CakeToolBox Test
 
-on:
-  push:
-    tags:
-       - '*'
+on: [push, pull_request]
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: windows-latest
     steps:
-    - name: Build and publish packages on nuget
+    - name: Check out code
       uses: actions/checkout@v2
 
-    - name: Run the Cake script
+    - name: Test packages
       uses: cake-build/cake-action@v1
-      env:
-        NUGET_API_KEY: ${{ secrets.NugetApiKey }}
-        GITHUB_API_KEY: ${{ secrets.GitHubApiKey }}
       with:
         verbosity: Verbose
-        target: Publish
+        target: Test

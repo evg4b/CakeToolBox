@@ -1,12 +1,20 @@
-name: CakeToolBox release
+name: CakeToolBox Release
 
-on: release
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build-docker-image:
-    name: Build and upload docker image
-    runs-on: ubuntu-latest
+    name: Build and publish packages
+    runs-on: windows-latest
     steps:
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+
       - name: Check out code
         uses: actions/checkout@v2
         with:
@@ -14,16 +22,21 @@ jobs:
 
       - name: Pack to .nupkg
         uses: cake-build/cake-action@v1
-        env:
-          NUGET_API_KEY: ${{ secrets.NugetApiKey }}
-          GITHUB_API_KEY: ${{ secrets.GitHubApiKey }}
         with:
           verbosity: Verbose
           target: Pack
 
+      - name: Push packages to NuGet
+        run: dotnet nuget push 'Publish/*.nupkg' --api-key ${{ secrets.NugetApiKey }} --source 'https://www.nuget.org' --skip-duplicate
+
+      - name: Push packages to GitHub
+        run: |
+          dotnet nuget add source https://nuget.pkg.github.com/evg4b/index.json -n github -u evg4b -p ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push 'Publish/*.nupkg' --source "github" --skip-duplicate
+
       - name: Upload to release
         uses: JasonEtco/upload-to-release@master
         with:
-          args: my-image.tar
+          args: Publish/*.nupkg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
