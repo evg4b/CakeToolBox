@@ -13,4 +13,4 @@ jobs:
       uses: cake-build/cake-action@v1
       with:
         verbosity: Verbose
-        target: Test
+        target: Tests
