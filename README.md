@@ -10,3 +10,4 @@
 
 - [CakeToolBox.Parameters](CakeToolBox.Parameters)
 - [CakeToolBox.Path](CakeToolBox.Path)
+- [CakeToolBox.Environment](CakeToolBox.Environment)
